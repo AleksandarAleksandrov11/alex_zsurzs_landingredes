@@ -33,7 +33,11 @@ export function MaskedLines({
     >
       {lines.map((line, i) => (
         <span key={i} className="block overflow-hidden pb-[0.08em]">
-          <motion.span className={cn("block", lineClassName)} variants={lineMask}>
+          <motion.span
+            data-anim
+            className={cn("block", lineClassName)}
+            variants={lineMask}
+          >
             {line}
           </motion.span>
         </span>

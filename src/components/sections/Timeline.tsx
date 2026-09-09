@@ -50,6 +50,7 @@ export function Timeline() {
             {timeline.map((entry) => (
               <motion.li
                 key={entry.year}
+                data-anim
                 variants={fadeUp}
                 className="relative grid grid-cols-[auto_minmax(0,1fr)] gap-x-6 gap-y-2 pl-0 sm:grid-cols-[auto_7rem_minmax(0,1fr)] sm:gap-x-8"
               >

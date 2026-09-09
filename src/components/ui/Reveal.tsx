@@ -14,6 +14,7 @@ interface RevealProps {
 export function Reveal({ children, className, delay = 0 }: RevealProps) {
   return (
     <motion.div
+      data-anim
       className={className}
       variants={fadeUp}
       initial="hidden"
@@ -57,7 +58,7 @@ interface RevealItemProps {
 
 export function RevealItem({ children, className }: RevealItemProps) {
   return (
-    <motion.div className={className} variants={fadeUp}>
+    <motion.div data-anim className={className} variants={fadeUp}>
       {children}
     </motion.div>
   );

@@ -23,6 +23,7 @@ export function LinkCard({ item }: LinkCardProps) {
   return (
     <motion.a
       ref={magnetic.ref as React.Ref<HTMLAnchorElement>}
+      data-anim
       variants={fadeUp}
       href={withUtm(item.href)}
       target="_blank"

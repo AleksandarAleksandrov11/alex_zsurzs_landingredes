@@ -88,10 +88,6 @@
     overflow: hidden;
   }
 
-  /* Bloquea el scroll mientras se muestra el preloader */
-  html[data-preloading="true"] body {
-    overflow: hidden;
-  }
 
   body {
     margin: 0;
@@ -308,6 +304,35 @@
   }
 
 
+  /* Red de seguridad del contenido animado.
+     Motion renderiza estos elementos ocultos en el servidor y los revela al
+     hidratar. Si React nunca hidrata (JS desactivado, un chunk que no carga),
+     el CSS los muestra por su cuenta: la página siempre se lee.
+     Las animaciones CSS pesan más que los estilos en línea en la cascada, así
+     que esto gana al `opacity: 0` que escribe Motion. */
+  html:not(.hydrated) [data-anim] {
+    animation: zs-reveal-failsafe 0.3s var(--ease-brand) 1s forwards;
+  }
+  @keyframes zs-reveal-failsafe {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Red de seguridad: el preloader se retira con CSS aunque el JS no llegue
+     a ejecutarse. React lo desmonta antes; esto solo cubre el caso de fallo. */
+  .preloader {
+    animation: zs-preloader-out 0.4s var(--ease-brand) 1.5s forwards;
+  }
+  @keyframes zs-preloader-out {
+    to {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
   /* Preloader: la Z se dibuja y el rayo destella */
   .preloader-stroke path {
     stroke-width: 3;
@@ -415,10 +440,12 @@
     animation: none !important;
   }
 
-  .preloader-stroke path,
-  .preloader-fill path {
-    animation: none !important;
-    opacity: 1;
-    stroke-dashoffset: 0;
+  .preloader {
+    display: none !important;
+  }
+
+  html:not(.hydrated) [data-anim] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

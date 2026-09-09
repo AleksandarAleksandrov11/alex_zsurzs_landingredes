@@ -2,10 +2,12 @@ import type { Metadata, Viewport } from "next";
 import { Righteous } from "next/font/google";
 import { CustomCursor } from "@/components/layout/CustomCursor";
 import { Footer } from "@/components/layout/Footer";
+import { HydrationFlag } from "@/components/layout/HydrationFlag";
 import { Header } from "@/components/layout/Header";
 import { Preloader } from "@/components/layout/Preloader";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
-import { EMAIL, LANDING_URL, SITE_URL, identity, seo, socials } from "@/content/site";
+import { EMAIL, SITE_URL, identity, seo, socials } from "@/content/site";
+import { SITE_ORIGIN } from "@/lib/site-url";
 import "./globals.css";
 
 const righteous = Righteous({
@@ -17,7 +19,7 @@ const righteous = Righteous({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(LANDING_URL),
+  metadataBase: new URL(SITE_ORIGIN),
   title: {
     default: seo.title,
     template: "%s · Alex Zsurzs",
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: LANDING_URL,
+    url: SITE_ORIGIN,
     siteName: `${identity.fullName} · ${identity.brand}`,
     title: seo.title,
     description: seo.description,
@@ -84,13 +86,13 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": `${LANDING_URL}/#alex-zsurzs`,
+      "@id": `${SITE_ORIGIN}/#alex-zsurzs`,
       name: identity.fullName,
       alternateName: identity.nickname,
       jobTitle: "Instalador y formador técnico",
       description: identity.bio[0],
       email: `mailto:${EMAIL}`,
-      url: LANDING_URL,
+      url: SITE_ORIGIN,
       address: {
         "@type": "PostalAddress",
         addressLocality: "Barcelona",
@@ -105,20 +107,20 @@ const jsonLd = {
         "Formación técnica",
       ],
       sameAs: socials.map((social) => social.href),
-      worksFor: { "@id": `${LANDING_URL}/#z-solutions` },
+      worksFor: { "@id": `${SITE_ORIGIN}/#z-solutions` },
     },
     {
       "@type": "Organization",
-      "@id": `${LANDING_URL}/#z-solutions`,
+      "@id": `${SITE_ORIGIN}/#z-solutions`,
       name: identity.brand,
       url: SITE_URL,
       slogan: identity.lema,
-      founder: { "@id": `${LANDING_URL}/#alex-zsurzs` },
+      founder: { "@id": `${SITE_ORIGIN}/#alex-zsurzs` },
       sameAs: socials.map((social) => social.href),
     },
     {
       "@type": "LocalBusiness",
-      "@id": `${LANDING_URL}/#negocio`,
+      "@id": `${SITE_ORIGIN}/#negocio`,
       name: `${identity.brand} — ${identity.fullName}`,
       description: seo.description,
       url: SITE_URL,
@@ -146,7 +148,9 @@ export default function RootLayout({
       </head>
       <body>
         <noscript>
-          <style>{`.preloader{display:none!important}`}</style>
+          {/* Sin JavaScript no hay quien retire el preloader ni el desenfoque
+              de carga de next/image: los quitamos desde CSS. */}
+          <style>{`.preloader{display:none!important}img[data-nimg]{background-image:none!important}`}</style>
         </noscript>
 
         <script
@@ -159,6 +163,7 @@ export default function RootLayout({
           Saltar al contenido
         </a>
 
+        <HydrationFlag />
         <Preloader />
         <SmoothScroll />
         <CustomCursor />

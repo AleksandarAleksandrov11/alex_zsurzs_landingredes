@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
-import { LANDING_URL } from "@/content/site";
+import { SITE_ORIGIN } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: LANDING_URL,
+      url: SITE_ORIGIN,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
