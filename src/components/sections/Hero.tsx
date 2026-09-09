@@ -54,7 +54,7 @@ export function Hero() {
           </motion.div>
 
           {/* Sin tinte: solo el fundido a negro que hace legible el texto */}
-          <div className="absolute inset-0 bg-gradient-to-t from-bg from-26% via-bg/55 to-transparent lg:from-0% lg:via-bg/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-bg from-32% via-bg/65 to-transparent lg:from-0% lg:via-bg/25" />
           <div className="absolute inset-0 hidden bg-gradient-to-r from-bg via-bg/10 to-transparent lg:block" />
           {/* Franja superior: da contraste al logotipo y a la localización */}
           <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-bg/85 via-bg/35 to-transparent" />
@@ -101,14 +101,14 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7, ease: EASE }}
-          className="flex items-center gap-3 text-eyebrow font-bold text-brand-orange uppercase [text-shadow:0_1px_14px_var(--color-bg)] lg:[text-shadow:none]"
+          className="flex items-center gap-3 text-eyebrow font-bold text-brand-orange uppercase"
         >
           <SpeedLines className="h-2.5 text-brand-orange" count={3} />
           {identity.role}
         </motion.p>
 
         <h1
-          className="flex flex-col text-hero font-display uppercase [text-shadow:0_2px_24px_var(--color-bg)] lg:[text-shadow:none]"
+          className="flex flex-col text-hero font-display uppercase"
           aria-label={identity.fullName}
         >
           {[identity.firstName, identity.lastName].map((word, i) => (
