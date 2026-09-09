@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Mail, MessageCircle } from "lucide-react";
 import { BrandMark } from "@/components/ui/BrandMark";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -8,6 +9,7 @@ import {
   WHATSAPP_PENDING,
   WHATSAPP_URL,
   identity,
+  images,
   primaryCta,
 } from "@/content/site";
 
@@ -17,6 +19,22 @@ export function ContactCTA() {
       id="contacto"
       className="section-pad relative scroll-mt-20 overflow-hidden"
     >
+      {/* Retrato de cierre bajo capa de color corporativo (manual, 05) */}
+      <div className="absolute inset-0 -z-20" aria-hidden="true">
+        <Image
+          src={images.contact.src}
+          alt=""
+          fill
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL={images.contact.blurDataURL}
+          sizes="100vw"
+          className="object-cover object-[72%_26%] grayscale contrast-105"
+        />
+        <div className="absolute inset-0 bg-brand-blue-deep/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-bg via-bg/55 to-bg" />
+      </div>
+
       {/* Isotipo como marca de agua, en azul corporativo */}
       <BrandMark
         className="pointer-events-none absolute -right-24 -bottom-16 -z-10 w-[78vw] max-w-2xl"

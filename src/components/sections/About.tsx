@@ -16,11 +16,30 @@ export function About() {
               alt={images.portrait.alt}
               fill
               loading="lazy"
+              placeholder="blur"
+              blurDataURL={images.portrait.blurDataURL}
               sizes="(min-width: 1024px) 40vw, 92vw"
-              className="object-cover grayscale transition-[filter] duration-700 hover:grayscale-0"
+              className="object-cover object-[52%_18%] grayscale transition-[filter] duration-700 hover:grayscale-0"
             />
-            <div className="absolute inset-0 bg-brand-blue-deep/35 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-brand-blue-deep/30 mix-blend-multiply" />
             <div className="hairline pointer-events-none absolute inset-0 rounded-2xl" />
+          </div>
+
+          {/* Segunda imagen: el galardón, superpuesta a la principal */}
+          <div className="absolute -right-2 -bottom-6 w-32 overflow-hidden rounded-xl border-2 border-bg sm:-right-5 sm:w-40 lg:w-44">
+            <div className="relative aspect-square w-full">
+              <Image
+                src={images.award.src}
+                alt={images.award.alt}
+                fill
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL={images.award.blurDataURL}
+                sizes="(min-width: 1024px) 11rem, 8rem"
+                className="object-cover object-[50%_22%] grayscale"
+              />
+              <div className="absolute inset-0 bg-brand-blue-deep/25 mix-blend-multiply" />
+            </div>
           </div>
 
           {/* Detalle de marca: rayo + línea de cota */}

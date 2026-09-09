@@ -6,8 +6,6 @@ import { images, training } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 export function Training() {
-  const [work] = images.work;
-
   return (
     <section id="formaciones" className="section-pad relative scroll-mt-20">
       <div className="container-brand">
@@ -16,14 +14,16 @@ export function Training() {
             {/* Fotografía de obra + capa corporativa 60–80% (manual, 05) */}
             <div className="absolute inset-0" aria-hidden="true">
               <Image
-                src={work.src}
+                src={images.vertical.src}
                 alt=""
                 fill
                 loading="lazy"
+                placeholder="blur"
+                blurDataURL={images.vertical.blurDataURL}
                 sizes="100vw"
-                className="object-cover object-center grayscale"
+                className="object-cover object-[62%_38%] grayscale"
               />
-              <div className="absolute inset-0 bg-brand-blue-deep/78" />
+              <div className="absolute inset-0 bg-brand-blue-deep/74" />
               <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/80 to-bg/35" />
             </div>
 

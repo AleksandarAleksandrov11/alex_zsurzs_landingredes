@@ -29,31 +29,37 @@ export function Hero() {
       ref={ref}
       className="vignette relative flex min-h-[90dvh] w-full flex-col justify-end overflow-hidden sm:min-h-[100dvh]"
     >
-      {/* Fotografía de obra + capa de color corporativo al 60–80% (manual, 05) */}
-      <motion.div
-        className="absolute inset-0 -z-10"
-        style={reduce ? undefined : { y: imageY }}
-      >
+      {/* Fotografía de obra + capa de color corporativo al 68% (manual, 05) */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
         <motion.div
-          className="relative h-[115%] w-full"
-          initial={reduce ? false : { scale: 1.06 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.8, ease: EASE }}
+          className="absolute top-0 right-0 left-0 h-[60%] [mask-image:linear-gradient(to_bottom,#000_62%,transparent_100%)] lg:bottom-0 lg:left-[34%] lg:h-auto lg:[mask-image:linear-gradient(to_right,transparent_0%,#000_40%)]"
+          style={reduce ? undefined : { y: imageY }}
         >
-          <Image
-            src={images.hero.src}
-            alt={images.hero.alt}
-            fill
-            priority
-            fetchPriority="high"
-            sizes="100vw"
-            className="object-cover object-[50%_22%] grayscale lg:object-[68%_20%]"
-          />
+          <motion.div
+            className="relative h-[112%] w-full"
+            initial={reduce ? false : { scale: 1.06 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.8, ease: EASE }}
+          >
+            <Image
+              src={images.hero.src}
+              alt={images.hero.alt}
+              fill
+              priority
+              fetchPriority="high"
+              placeholder="blur"
+              blurDataURL={images.hero.blurDataURL}
+              sizes="(min-width: 1024px) 62vw, 100vw"
+              className="object-cover object-[50%_14%] grayscale contrast-110 lg:object-[50%_30%]"
+            />
+          </motion.div>
+
+          <div className="absolute inset-0 bg-brand-blue-deep/64" />
+          <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/35 to-bg/5 lg:via-bg/20 lg:to-transparent" />
         </motion.div>
-        <div className="absolute inset-0 bg-brand-blue-deep/68" />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/45 to-transparent" />
-        <div className="blueprint absolute inset-0 opacity-30" />
-      </motion.div>
+
+        <div className="blueprint absolute inset-0 opacity-25" />
+      </div>
 
       {/* Detalle técnico superior */}
       <div className="container-brand absolute inset-x-0 top-0 flex items-start justify-between gap-4 pt-[max(1.5rem,env(safe-area-inset-top))]">

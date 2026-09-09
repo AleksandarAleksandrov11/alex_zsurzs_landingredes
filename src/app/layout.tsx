@@ -47,10 +47,32 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   category: "business",
+  manifest: "/manifest.webmanifest",
+  applicationName: `${identity.fullName} · ${identity.brand}`,
+  appleWebApp: {
+    capable: true,
+    title: identity.fullName,
+    statusBarStyle: "black-translucent",
+  },
+  formatDetection: { telephone: false, address: false, email: false },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    other: [
+      { rel: "mask-icon", url: "/icons/safari-pinned-tab.svg", color: "#2F4AA0" },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0F0F10",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0F0F10" },
+    { media: "(prefers-color-scheme: light)", color: "#0F0F10" },
+  ],
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
@@ -118,6 +140,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={righteous.variable}>
+      <head>
+        <link rel="preconnect" href="https://alexzsurzs.com" />
+        <link rel="dns-prefetch" href="https://alexzsurzs.com" />
+      </head>
       <body>
         <noscript>
           <style>{`.preloader{display:none!important}`}</style>

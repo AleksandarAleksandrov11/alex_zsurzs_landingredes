@@ -55,29 +55,54 @@ a todos los enlaces externos desde la constante `UTM` de ese mismo archivo; poni
 | URLs de aviso legal y privacidad | `legal.links` en `site.ts` | Rutas estándar de Shopify. Confirmar que existen. |
 | Dominio final | `LANDING_URL` en `site.ts` | Ahora apunta a `alexzsurzs.com`. Cambiar si la landing va a un subdominio. |
 
-## Fotografías que hacen falta
+## Fotografías
 
-Las imágenes actuales de `public/images/` son **marcadores de posición** con la marca
-(fondo oscuro, rejilla técnica e isotipo). Hay que sustituirlas por las fotos reales
-manteniendo el mismo nombre de archivo y proporción:
+Las fotos de Alex ya están integradas y procesadas (recortadas, optimizadas y con
+miniatura de carga en base64). Se sirven en blanco y negro con capa de color
+corporativo, como manda el manual.
 
-| Archivo | Tamaño mínimo | Proporción | Qué debe verse |
-|---|---|---|---|
-| `hero.jpg` | 1600 × 2000 px | 4:5 (vertical) | Alex en obra, plano medio. Se recorta a pantalla completa y se le aplica B/N + capa azul corporativo. Deja aire alrededor del sujeto. |
-| `about-portrait.jpg` | 1200 × 1500 px | 4:5 (vertical) | Retrato de Alex con la sudadera de Z Solutions. |
-| `work-01.jpg` | 1200 × 1500 px | 4:5 (vertical) | Trabajo vertical o intervención en altura. Se usa de fondo del bloque de formación. |
-| `work-02.jpg` | 1200 × 1500 px | 4:5 (vertical) | Segunda foto de obra, de reserva. |
-| `producto-bolsas-40.jpg` | 1000 × 1000 px | 1:1 | Bolsas anti-polvo 40 mm. |
-| `producto-bolsas-65.jpg` | 1000 × 1000 px | 1:1 | Bolsas anti-polvo 65 mm. |
-| `producto-mangueras.jpg` | 1000 × 1000 px | 1:1 | Mangueras de vacío HIGH-FLOW. |
-| `producto-ccs-ultra.jpg` | 1000 × 1000 px | 1:1 | Ascendedor/descendedor CCS-Ultra. |
+| Archivo | Tamaño | Dónde se usa |
+|---|---|---|
+| `hero.jpg` | 1068 × 1600 | Hero. En escritorio ocupa la banda derecha con fundido; en móvil, la franja superior. |
+| `about-portrait.jpg` | 900 × 1125 | Retrato principal de «Sobre mí». |
+| `about-premio.jpg` | 1200 × 1200 | Imagen secundaria superpuesta en «Sobre mí». |
+| `work-vertical.jpg` | 892 × 1587 | Fondo del bloque de formación presencial. |
+| `contacto.jpg` | 900 × 600 | Fondo del bloque de contacto final. |
 
-Formato JPEG o WebP de origen; Next.js genera AVIF y WebP en varios tamaños
-automáticamente. Si se cambia la proporción de alguna, hay que ajustar el `aspect-ratio`
-del contenedor correspondiente para no provocar saltos de maquetación.
+**Siguen pendientes las 4 fotos de producto**, que ahora son marcadores de posición
+con la marca. Hay que sustituirlas manteniendo el nombre y la proporción 1:1:
+
+| Archivo | Tamaño mínimo | Qué debe verse |
+|---|---|---|
+| `producto-bolsas-40.jpg` | 1000 × 1000 | Bolsas anti-polvo de 40 mm. |
+| `producto-bolsas-65.jpg` | 1000 × 1000 | Bolsas anti-polvo de 65 mm. |
+| `producto-mangueras.jpg` | 1000 × 1000 | Mangueras de vacío HIGH-FLOW. |
+| `producto-ccs-ultra.jpg` | 1000 × 1000 | Ascendedor/descendedor CCS-Ultra. |
+
+Al sustituir una foto hay que regenerar su `blurDataURL` en `src/content/site.ts`
+(miniatura de 10 px en base64) o quitar el `placeholder="blur"` de ese `<Image>`.
 
 Vídeo de hero: no se usa. Si más adelante se añade, debe servirse solo en escritorio,
 con `muted`, `playsInline`, `preload="none"` y póster, dejando la imagen estática en móvil.
+
+## Iconos, manifiesto y metadatos
+
+Todo generado a partir del isotipo oficial:
+
+| Archivo | Para qué |
+|---|---|
+| `src/app/favicon.ico` | Favicon clásico, multirresolución 16/32/48. |
+| `src/app/icon.svg` | Favicon vectorial (el que usan los navegadores modernos). |
+| `src/app/apple-icon.png` | Icono de 180 × 180 para «Añadir a pantalla de inicio» en iOS. |
+| `public/icons/icon-192.png` y `icon-512.png` | Iconos de la PWA en Android. |
+| `public/icons/icon-maskable-512.png` | Versión *maskable* con la zona segura del 80 %. |
+| `public/icons/safari-pinned-tab.svg` | Pestaña anclada de Safari, monocromo. |
+| `src/app/manifest.ts` → `/manifest.webmanifest` | Nombre, colores, orientación e iconos de la app instalable. |
+| `src/app/opengraph-image.tsx` y `twitter-image.tsx` | Imagen 1200 × 630 al compartir el enlace. |
+| `src/app/sitemap.ts` y `robots.ts` | `/sitemap.xml` y `/robots.txt`. |
+
+Además: `theme-color`, `apple-mobile-web-app-title`, `application-name`, canonical,
+JSON-LD de `Person`, `Organization` y `LocalBusiness`, y `preconnect` a la tienda.
 
 ## Marca
 
