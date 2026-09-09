@@ -19,7 +19,9 @@ export function AnimatedCounter({
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.6 });
   const reduce = useReducedMotion();
-  const [display, setDisplay] = useState(0);
+  // Se renderiza ya con la cifra final: si el JavaScript no llega a
+  // ejecutarse, el número sigue siendo correcto.
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
     if (!isInView) return;

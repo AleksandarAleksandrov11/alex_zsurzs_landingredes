@@ -29,6 +29,36 @@ pnpm typecheck  # tsc --noEmit
 pnpm lint       # eslint
 ```
 
+## Despliegue en Vercel
+
+El repositorio incluye `vercel.json` con el framework, los comandos de
+instalación y build, las cabeceras de caché de los assets estáticos y las de
+seguridad. Node queda fijado a 22 en `engines`.
+
+**Al importar el proyecto en Vercel:**
+
+1. **Root Directory:** la raíz del repositorio (no hay subcarpeta).
+2. **Production Branch:** `main`.
+3. **Framework Preset:** Next.js (lo detecta solo con `vercel.json`).
+4. No hace falta ninguna variable de entorno para que funcione.
+
+**Dominio y URLs absolutas.** El canonical, la imagen de compartir, el sitemap
+y el robots.txt se calculan solos a partir del entorno, en este orden:
+
+1. `NEXT_PUBLIC_SITE_URL`, si la defines en el proyecto de Vercel.
+2. `VERCEL_PROJECT_PRODUCTION_URL`, el dominio de producción del proyecto.
+3. `VERCEL_URL`, la URL de la previsualización de cada rama.
+4. `https://alexzsurzs.com` como último recurso en local.
+
+Cuando la landing tenga su dominio definitivo, basta con definir
+`NEXT_PUBLIC_SITE_URL` en Vercel y volver a desplegar. Ver `src/lib/site-url.ts`.
+
+**La página se lee aunque el JavaScript no llegue a ejecutarse.** Las
+animaciones de entrada dejan el contenido oculto hasta que React hidrata; si
+eso no ocurre (JS desactivado, un chunk que falla, una red que corta), el CSS
+revela el contenido por su cuenta y retira el preloader. Está comprobado con
+el navegador sin JavaScript y bloqueando los chunks de `_next/static`.
+
 ## Dónde se edita el contenido
 
 **Todo** el texto, los enlaces, los precios y las cifras están en un único archivo:

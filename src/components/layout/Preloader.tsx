@@ -39,21 +39,13 @@ export function Preloader() {
       return;
     }
 
-    document.documentElement.dataset.preloading = "true";
     const timer = window.setTimeout(() => {
       markSeen();
       setVisible(false);
     }, DURATION_MS);
 
-    return () => {
-      window.clearTimeout(timer);
-      delete document.documentElement.dataset.preloading;
-    };
+    return () => window.clearTimeout(timer);
   }, [reduce]);
-
-  useEffect(() => {
-    if (!visible) delete document.documentElement.dataset.preloading;
-  }, [visible]);
 
   return (
     <AnimatePresence>

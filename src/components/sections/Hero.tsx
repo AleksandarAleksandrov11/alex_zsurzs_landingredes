@@ -64,6 +64,7 @@ export function Hero() {
       {/* Detalle técnico superior */}
       <div className="container-brand absolute inset-x-0 top-0 flex items-start justify-between gap-4 pt-[max(1.5rem,env(safe-area-inset-top))]">
         <motion.div
+          data-anim
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.7, ease: EASE }}
@@ -77,6 +78,7 @@ export function Hero() {
         </motion.div>
 
         <motion.p
+          data-anim
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.7, ease: EASE }}
@@ -93,6 +95,7 @@ export function Hero() {
         style={reduce ? undefined : { y: contentY, opacity: contentOpacity }}
       >
         <motion.p
+          data-anim
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7, ease: EASE }}
@@ -109,6 +112,7 @@ export function Hero() {
           {[identity.firstName, identity.lastName].map((word, i) => (
             <span key={word} className="block overflow-hidden pb-[0.06em]">
               <motion.span
+                data-anim
                 className="block"
                 initial={{ y: "110%" }}
                 animate={{ y: "0%" }}
@@ -121,6 +125,7 @@ export function Hero() {
         </h1>
 
         <motion.div
+          data-anim
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.85, duration: 0.7, ease: EASE }}
@@ -139,6 +144,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div
+          data-anim
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.95, duration: 0.7, ease: EASE }}
@@ -156,6 +162,7 @@ export function Hero() {
       {/* Indicador de scroll */}
       <motion.a
         href="#enlaces"
+        data-anim
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}

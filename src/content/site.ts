@@ -79,10 +79,8 @@ export interface Stat {
 /*  Configuración                                                              */
 /* -------------------------------------------------------------------------- */
 
+/** Tienda y web completa de Alex: destino de los enlaces salientes. */
 export const SITE_URL = "https://alexzsurzs.com";
-
-/** Dominio propio donde se publicará esta landing (para canonical y OG). */
-export const LANDING_URL = "https://alexzsurzs.com";
 
 /** Parámetros UTM aplicados a todos los enlaces externos. Editable aquí. */
 export const UTM = {
