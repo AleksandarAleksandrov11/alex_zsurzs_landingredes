@@ -67,6 +67,14 @@ export default function Page() {
         de la conexión, como la dirección IP y el tipo de navegador, con la única
         finalidad de servir la página y mantener su seguridad.
       </p>
+      <p>
+        Si aceptas el aviso de cookies se activa además{" "}
+        <strong>Vercel Web Analytics</strong>, una medición de audiencia sin
+        cookies que cuenta las visitas de forma agregada y no permite
+        identificarte ni reconocerte entre sesiones. Si no lo aceptas, no se
+        carga. El detalle está en la{" "}
+        <a href="/cookies">política de cookies</a>.
+      </p>
 
       <h2>Para qué se usan</h2>
       <ul>
@@ -81,6 +89,12 @@ export default function Page() {
         <li>
           <span>Cumplir las obligaciones legales, fiscales y contables.</span>
         </li>
+        <li>
+          <span>
+            Medir de forma agregada cuántas visitas recibe la página, solo si has
+            dado tu consentimiento.
+          </span>
+        </li>
       </ul>
       <p>
         No se elaboran perfiles ni se toman decisiones automatizadas, y no se
@@ -90,7 +104,8 @@ export default function Page() {
       <h2>Base jurídica</h2>
       <p>
         El tratamiento se basa en tu <strong>consentimiento</strong> al
-        escribirnos (artículo 6.1.a del RGPD), en la{" "}
+        escribirnos y al aceptar la medición de audiencia (artículo 6.1.a del
+        RGPD), en la{" "}
         <strong>ejecución de un contrato</strong> o de medidas precontractuales
         cuando se trata de un presupuesto o una inscripción (artículo 6.1.b), y
         en el <strong>cumplimiento de obligaciones legales</strong> para la
@@ -111,9 +126,9 @@ export default function Page() {
       <p>
         No se venden ni se ceden datos a terceros. Únicamente acceden a ellos los
         proveedores necesarios para prestar el servicio, que actúan como
-        encargados del tratamiento: el proveedor de alojamiento de la web, el de
-        correo electrónico y los servicios de mensajería que tú mismo elijas para
-        contactar.
+        encargados del tratamiento: Vercel Inc. (alojamiento de la web y
+        medición de audiencia), el proveedor de correo electrónico y los
+        servicios de mensajería que tú mismo elijas para contactar.
       </p>
       <p>
         Si escribes por <strong>WhatsApp</strong>, la conversación se produce en

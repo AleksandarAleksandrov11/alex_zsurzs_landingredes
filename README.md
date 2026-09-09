@@ -67,17 +67,31 @@ especialidades → Contacto → Footer.
 Fuera de la landing quedan las páginas legales, con su propio marco visual:
 `/aviso-legal`, `/privacidad` y `/cookies`.
 
-## Aviso de cookies
+En móvil el hero coloca la foto en la franja superior con un recorte más
+cerrado; en escritorio ocupa la banda derecha con un fundido hacia el texto.
 
-La landing **no instala cookies de analítica, publicidad ni seguimiento**. Lo
-único que guarda es almacenamiento del navegador: la elección del aviso
-(`zs-cookies`, permanente) y si ya se ha visto la animación de entrada
-(`zs-preloader`, solo durante la sesión y solo si se acepta). Rechazar tiene
-efecto real: el preloader deja de recordarse.
+## Analítica y aviso de cookies
 
-Si algún día se añade analítica, hay que ampliar el banner con gestión de
-consentimiento por categorías y actualizar `/cookies`. La lógica de
-consentimiento vive en `src/lib/consent.ts`.
+La medición de audiencia es **Vercel Web Analytics**, que no usa cookies, no
+guarda la IP y se sirve desde el propio dominio. Aun así se trata como
+analítica: el script **no se carga hasta que se acepta el aviso**.
+
+- `src/lib/consent.ts` guarda y publica la elección; `useConsent()` la expone de
+  forma reactiva a los componentes.
+- `src/components/layout/Analytics.tsx` monta Vercel Analytics solo con el
+  consentimiento aceptado. Al retirarlo recarga la página, porque la librería no
+  elimina su script al desmontarse.
+- `src/components/layout/CookieNotice.tsx` es el aviso; el enlace
+  **Preferencias de cookies** del footer borra la elección y lo vuelve a mostrar,
+  de modo que retirar el consentimiento es tan fácil como darlo.
+
+Además del script de analítica, lo único que se guarda en el navegador es la
+elección del aviso (`zs-cookies`, permanente) y si ya se ha visto la animación
+de entrada (`zs-preloader`, solo durante la sesión y solo si se acepta).
+
+**Hay que activar Web Analytics en el panel de Vercel** (pestaña Analytics del
+proyecto) para que empiece a registrar visitas. En local el script devuelve 404
+porque solo lo sirve la infraestructura de Vercel: es lo esperado.
 
 ## Dónde se edita el contenido
 
@@ -107,7 +121,7 @@ correo **info@zsolutions.es** y, para asuntos legales, **gestion@zsolutions.es**
 
 ## Fotografías
 
-Las tres fotos de Alex están integradas y procesadas (recortadas, optimizadas y
+Las dos fotos de Alex están integradas y procesadas (recortadas, optimizadas y
 con miniatura de carga en base64). Se sirven **a color, sin filtro**: el manual
 permite el blanco y negro y la capa corporativa, no los impone.
 
@@ -115,7 +129,6 @@ permite el blanco y negro y la capa corporativa, no los impone.
 |---|---|---|
 | `hero.jpg` | 1068 × 1600 | Hero. En escritorio ocupa la banda derecha con fundido; en móvil, la franja superior. |
 | `about-portrait.jpg` | 900 × 1125 | Retrato principal de «Sobre mí». |
-| `about-premio.jpg` | 1200 × 1200 | Imagen secundaria superpuesta en «Sobre mí». |
 
 Al sustituir una foto hay que regenerar su `blurDataURL` en `src/content/site.ts`
 (miniatura de 10 px en base64) o quitar el `placeholder="blur"` de ese `<Image>`.

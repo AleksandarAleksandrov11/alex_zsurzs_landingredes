@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Righteous } from "next/font/google";
+import { Analytics } from "@/components/layout/Analytics";
 import { CookieNotice } from "@/components/layout/CookieNotice";
 import { CustomCursor } from "@/components/layout/CustomCursor";
 import { Footer } from "@/components/layout/Footer";
@@ -189,6 +190,7 @@ export default function RootLayout({
         <Footer />
 
         <CookieNotice />
+        <Analytics />
 
         <div className="grain-overlay" aria-hidden="true" />
       </body>

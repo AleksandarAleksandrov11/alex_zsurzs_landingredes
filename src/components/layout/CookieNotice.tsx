@@ -4,22 +4,28 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { BoltMark } from "@/components/ui/BoltMark";
-import { getConsent, setConsent } from "@/lib/consent";
+import { setConsent, useConsent } from "@/lib/consent";
 import { EASE } from "@/lib/motion";
 
 /**
- * Aviso de almacenamiento. La landing no instala cookies de analítica ni de
- * publicidad, así que el texto lo dice tal cual: lo único opcional es recordar
- * la animación de entrada. Rechazar tiene efecto real (ver `Preloader`).
+ * Aviso de cookies. Rechazar tiene efecto real: sin consentimiento no se carga
+ * la analítica de Vercel (ver `Analytics`) ni se recuerda la animación de
+ * entrada (ver `Preloader`).
  */
 export function CookieNotice() {
+  const consent = useConsent();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (getConsent() !== null) return;
+    // `undefined` = todavía no se ha leído el almacenamiento.
+    if (consent === undefined) return;
+    if (consent !== null) {
+      setVisible(false);
+      return;
+    }
     const timer = window.setTimeout(() => setVisible(true), 900);
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [consent]);
 
   const choose = (value: "accepted" | "rejected") => {
     setConsent(value);
@@ -46,9 +52,9 @@ export function CookieNotice() {
             />
 
             <p className="flex-1 text-sm leading-relaxed text-fg-muted">
-              Esta web no usa cookies de analítica ni de publicidad. Solo guarda
-              en tu navegador tu elección y si ya has visto la animación de
-              entrada.{" "}
+              Usamos medición de audiencia anónima para saber cuántas visitas
+              recibe la página. No hay publicidad ni seguimiento entre webs, y
+              sin tu permiso no se activa nada.{" "}
               <Link
                 href="/cookies"
                 className="text-brand-orange underline underline-offset-2 transition-colors duration-300 hover:text-brand-orange-hover"

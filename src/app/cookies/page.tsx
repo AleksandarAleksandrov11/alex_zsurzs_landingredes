@@ -27,11 +27,51 @@ export default function Page() {
 
       <h2>Qué usa esta página</h2>
       <p>
-        Esta landing <strong>no instala cookies de analítica, de publicidad ni
-        de seguimiento</strong>, y no comparte datos con redes publicitarias. Lo
-        único que guarda es almacenamiento técnico en tu propio navegador, que
-        nunca sale de tu dispositivo:
+        Esta landing <strong>no muestra publicidad, no crea perfiles y no te
+        sigue por otras webs</strong>. Solo hay dos cosas, y ninguna se activa
+        hasta que aceptas el aviso.
       </p>
+
+      <h3>Medición de audiencia</h3>
+      <p>
+        Si aceptas, se carga <strong>Vercel Web Analytics</strong>, el servicio
+        de analítica del proveedor que aloja la web. Sirve para saber cuántas
+        visitas recibe la página y desde qué tipo de dispositivo llegan.
+      </p>
+      <ul>
+        <li>
+          <span>
+            <strong>No usa cookies</strong> ni ninguna otra forma de
+            almacenamiento en tu dispositivo.
+          </span>
+        </li>
+        <li>
+          <span>
+            No guarda tu dirección IP. Genera un identificador temporal a partir
+            de datos de la petición que se descarta cada día, así que no permite
+            reconocerte entre visitas.
+          </span>
+        </li>
+        <li>
+          <span>
+            El script se sirve desde este mismo dominio, no desde un servidor
+            externo, y los datos se agregan: no hay perfiles individuales.
+          </span>
+        </li>
+      </ul>
+      <p>
+        Puedes consultar el detalle en la{" "}
+        <a
+          href="https://vercel.com/docs/analytics/privacy-policy"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          política de privacidad de Vercel Analytics
+        </a>
+        . Si rechazas, el script no llega a cargarse.
+      </p>
+
+      <h3>Almacenamiento técnico</h3>
       <ul>
         <li>
           <span>
@@ -44,8 +84,7 @@ export default function Page() {
           <span>
             <strong>zs-preloader</strong> (almacenamiento de sesión, se borra al
             cerrar la pestaña): recuerda que ya has visto la animación de entrada
-            para no repetirla en cada carga. Solo se guarda si aceptas este
-            aviso.
+            para no repetirla en cada carga. Solo se guarda si aceptas.
           </span>
         </li>
       </ul>
@@ -55,23 +94,23 @@ export default function Page() {
 
       <h2>Servicios de terceros</h2>
       <p>
-        Las tipografías se sirven desde el mismo dominio, así que no se realizan
-        peticiones a servicios externos al cargar la página. Cuando pulsas un
-        enlace a Instagram, TikTok, YouTube, WhatsApp o la tienda, sales de esta
-        web y pasan a aplicarse las políticas de cookies de esos sitios.
+        Las tipografías y las imágenes se sirven desde este mismo dominio, así
+        que al cargar la página no se hacen peticiones a servidores de terceros.
+        Cuando pulsas un enlace a Instagram, TikTok, YouTube, WhatsApp o la
+        tienda, sales de esta web y pasan a aplicarse las políticas de cookies de
+        esos sitios.
       </p>
 
       <h2>Cómo cambiar tu elección</h2>
       <p>
-        Puedes rechazar el almacenamiento desde el propio aviso. Si ya elegiste
-        antes y quieres cambiar de opinión, borra los datos de este sitio desde
-        la configuración de tu navegador: al volver a entrar aparecerá de nuevo
-        el aviso. Todos los navegadores permiten hacerlo desde su apartado de
-        privacidad o de datos de navegación.
+        Puedes aceptar o rechazar desde el propio aviso, y cambiar de opinión
+        cuando quieras: al final de la página, en el pie, tienes el enlace{" "}
+        <strong>Preferencias de cookies</strong>, que borra tu elección y vuelve
+        a mostrar el aviso. Retirar el consentimiento es tan fácil como darlo.
       </p>
       <p>
-        Rechazar el almacenamiento no limita ninguna función de la página: solo
-        hará que la animación de entrada se muestre en cada visita.
+        Rechazar no limita ninguna función de la página: solo hará que no se
+        mida la visita y que la animación de entrada se muestre cada vez.
       </p>
 
       <h2>Contacto</h2>

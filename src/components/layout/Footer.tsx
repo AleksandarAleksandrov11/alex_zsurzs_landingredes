@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ConsentReset } from "@/components/layout/ConsentReset";
 import { BrandIcon } from "@/components/ui/BrandIcon";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { SpeedLines } from "@/components/ui/SpeedLines";
@@ -62,6 +63,9 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <ConsentReset />
+            </li>
             <li>
               <span>{identity.location}</span>
             </li>

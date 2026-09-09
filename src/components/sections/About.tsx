@@ -24,22 +24,6 @@ export function About() {
             <div className="hairline pointer-events-none absolute inset-0 rounded-2xl" />
           </div>
 
-          {/* Segunda imagen: el galardón, superpuesta a la principal */}
-          <div className="absolute -right-2 -bottom-6 w-32 overflow-hidden rounded-xl border-2 border-bg sm:-right-5 sm:w-40 lg:w-44">
-            <div className="relative aspect-square w-full">
-              <Image
-                src={images.award.src}
-                alt={images.award.alt}
-                fill
-                loading="lazy"
-                placeholder="blur"
-                blurDataURL={images.award.blurDataURL}
-                sizes="(min-width: 1024px) 11rem, 8rem"
-                className="object-cover object-[50%_22%]"
-              />
-            </div>
-          </div>
-
           {/* Detalle de marca: rayo + línea de cota */}
           <div className="absolute -top-4 -left-3 flex items-center gap-2 sm:-left-5">
             <BoltMark className="h-9 w-auto text-brand-orange" />

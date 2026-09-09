@@ -31,7 +31,7 @@ export function Hero() {
       {/* Fotografía de obra a color, con fundido a negro para la legibilidad */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <motion.div
-          className="absolute top-0 right-0 left-0 h-[60%] [mask-image:linear-gradient(to_bottom,#000_62%,transparent_100%)] lg:bottom-0 lg:left-[34%] lg:h-auto lg:[mask-image:linear-gradient(to_right,transparent_0%,#000_40%)]"
+          className="absolute top-0 right-0 left-0 h-[74%] overflow-hidden [mask-image:linear-gradient(to_bottom,#000_70%,transparent_100%)] lg:bottom-0 lg:left-[34%] lg:h-auto lg:[mask-image:linear-gradient(to_right,transparent_0%,#000_40%)]"
           style={reduce ? undefined : { y: imageY }}
         >
           <motion.div
@@ -49,12 +49,12 @@ export function Hero() {
               placeholder="blur"
               blurDataURL={images.hero.blurDataURL}
               sizes="(min-width: 1024px) 62vw, 100vw"
-              className="object-cover object-[50%_14%] lg:object-[50%_30%]"
+              className="scale-[1.18] object-cover object-[50%_10%] lg:scale-100 lg:object-[50%_30%]"
             />
           </motion.div>
 
           {/* Sin tinte: solo el fundido a negro que hace legible el texto */}
-          <div className="absolute inset-0 bg-gradient-to-t from-bg from-30% via-bg/60 to-transparent lg:from-0% lg:via-bg/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-bg from-26% via-bg/55 to-transparent lg:from-0% lg:via-bg/25" />
           <div className="absolute inset-0 hidden bg-gradient-to-r from-bg via-bg/10 to-transparent lg:block" />
           {/* Franja superior: da contraste al logotipo y a la localización */}
           <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-bg/85 via-bg/35 to-transparent" />
@@ -101,14 +101,14 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7, ease: EASE }}
-          className="flex items-center gap-3 text-eyebrow font-bold text-brand-orange uppercase"
+          className="flex items-center gap-3 text-eyebrow font-bold text-brand-orange uppercase [text-shadow:0_1px_14px_var(--color-bg)] lg:[text-shadow:none]"
         >
           <SpeedLines className="h-2.5 text-brand-orange" count={3} />
           {identity.role}
         </motion.p>
 
         <h1
-          className="flex flex-col text-hero font-display uppercase"
+          className="flex flex-col text-hero font-display uppercase [text-shadow:0_2px_24px_var(--color-bg)] lg:[text-shadow:none]"
           aria-label={identity.fullName}
         >
           {[identity.firstName, identity.lastName].map((word, i) => (
