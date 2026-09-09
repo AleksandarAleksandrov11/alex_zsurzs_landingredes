@@ -41,12 +41,12 @@ export function Header() {
           </a>
 
           <a
-            href={withUtm(primaryCta.shop.href)}
+            href={withUtm(primaryCta.training.href)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-11 items-center rounded-full bg-brand-blue px-5 text-xs font-bold tracking-[0.12em] text-fg uppercase transition-colors duration-300 hover:bg-brand-blue-hover"
           >
-            Tienda
+            Formaciones
           </a>
         </div>
       </div>

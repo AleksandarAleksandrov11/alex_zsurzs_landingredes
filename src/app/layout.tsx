@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Righteous } from "next/font/google";
+import { CookieNotice } from "@/components/layout/CookieNotice";
 import { CustomCursor } from "@/components/layout/CustomCursor";
 import { Footer } from "@/components/layout/Footer";
 import { HydrationFlag } from "@/components/layout/HydrationFlag";
 import { Header } from "@/components/layout/Header";
 import { Preloader } from "@/components/layout/Preloader";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
-import { EMAIL, SITE_URL, identity, seo, socials } from "@/content/site";
+import { EMAIL, PHONE, SITE_URL, company, identity, seo, socials } from "@/content/site";
 import { SITE_ORIGIN } from "@/lib/site-url";
 import "./globals.css";
 
@@ -113,9 +114,20 @@ const jsonLd = {
       "@type": "Organization",
       "@id": `${SITE_ORIGIN}/#z-solutions`,
       name: identity.brand,
+      legalName: company.legalName,
+      taxID: company.taxId,
       url: SITE_URL,
       slogan: identity.lema,
+      email: `mailto:${company.email}`,
       founder: { "@id": `${SITE_ORIGIN}/#alex-zsurzs` },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: company.address.street,
+        postalCode: company.address.postalCode,
+        addressLocality: company.address.city,
+        addressRegion: company.address.region,
+        addressCountry: "ES",
+      },
       sameAs: socials.map((social) => social.href),
     },
     {
@@ -125,11 +137,14 @@ const jsonLd = {
       description: seo.description,
       url: SITE_URL,
       email: `mailto:${EMAIL}`,
+      telephone: PHONE,
       areaServed: "Barcelona, España",
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Barcelona",
-        addressRegion: "Cataluña",
+        streetAddress: company.address.street,
+        postalCode: company.address.postalCode,
+        addressLocality: company.address.city,
+        addressRegion: company.address.region,
         addressCountry: "ES",
       },
       knowsLanguage: ["es"],
@@ -172,6 +187,8 @@ export default function RootLayout({
         {children}
 
         <Footer />
+
+        <CookieNotice />
 
         <div className="grain-overlay" aria-hidden="true" />
       </body>

@@ -1,7 +1,8 @@
+import Link from "next/link";
 import { BrandIcon } from "@/components/ui/BrandIcon";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { SpeedLines } from "@/components/ui/SpeedLines";
-import { copyright, identity, legal, socials } from "@/content/site";
+import { company, copyright, identity, legal, socials } from "@/content/site";
 import { withUtm } from "@/lib/utils";
 
 export function Footer() {
@@ -40,7 +41,11 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="hairline-t flex flex-col gap-4 pt-8 text-sm text-fg-dim sm:flex-row sm:items-center sm:justify-between">
+        <p className="hairline-t pt-8 text-xs leading-relaxed text-fg-dim">
+          {company.legalName} · CIF {company.taxId} · {company.addressLine}
+        </p>
+
+        <div className="flex flex-col gap-4 text-sm text-fg-dim sm:flex-row sm:items-center sm:justify-between">
           <p className="flex items-center gap-3">
             <SpeedLines className="h-3 text-brand-blue" />
             <span>{copyright()}</span>
@@ -49,14 +54,12 @@ export function Footer() {
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
             {legal.links.map((link) => (
               <li key={link.href}>
-                <a
-                  href={withUtm(link.href)}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href={link.href}
                   className="transition-colors duration-300 hover:text-brand-orange"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
             <li>

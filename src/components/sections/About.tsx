@@ -19,9 +19,8 @@ export function About() {
               placeholder="blur"
               blurDataURL={images.portrait.blurDataURL}
               sizes="(min-width: 1024px) 40vw, 92vw"
-              className="object-cover object-[52%_18%] grayscale transition-[filter] duration-700 hover:grayscale-0"
+              className="object-cover object-[52%_18%]"
             />
-            <div className="absolute inset-0 bg-brand-blue-deep/30 mix-blend-multiply" />
             <div className="hairline pointer-events-none absolute inset-0 rounded-2xl" />
           </div>
 
@@ -36,9 +35,8 @@ export function About() {
                 placeholder="blur"
                 blurDataURL={images.award.blurDataURL}
                 sizes="(min-width: 1024px) 11rem, 8rem"
-                className="object-cover object-[50%_22%] grayscale"
+                className="object-cover object-[50%_22%]"
               />
-              <div className="absolute inset-0 bg-brand-blue-deep/25 mix-blend-multiply" />
             </div>
           </div>
 

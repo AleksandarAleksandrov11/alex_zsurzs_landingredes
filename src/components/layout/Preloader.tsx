@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { BrandMark } from "@/components/ui/BrandMark";
 import { EASE } from "@/lib/motion";
+import { hasStorageConsent } from "@/lib/consent";
 
 const STORAGE_KEY = "zs-preloader";
 const DURATION_MS = 1150;
 
 function alreadySeen(): boolean {
+  if (!hasStorageConsent()) return false;
   try {
     return window.sessionStorage.getItem(STORAGE_KEY) === "1";
   } catch {
@@ -17,6 +19,8 @@ function alreadySeen(): boolean {
 }
 
 function markSeen(): void {
+  // Recordarlo es almacenamiento no esencial: solo si se ha aceptado.
+  if (!hasStorageConsent()) return;
   try {
     window.sessionStorage.setItem(STORAGE_KEY, "1");
   } catch {

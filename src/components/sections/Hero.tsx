@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
-import { ArrowDown } from "lucide-react";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { SpeedLines } from "@/components/ui/SpeedLines";
@@ -29,7 +28,7 @@ export function Hero() {
       ref={ref}
       className="vignette relative flex min-h-[90dvh] w-full flex-col justify-end overflow-hidden sm:min-h-[100dvh]"
     >
-      {/* Fotografía de obra + capa de color corporativo al 68% (manual, 05) */}
+      {/* Fotografía de obra a color, con fundido a negro para la legibilidad */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <motion.div
           className="absolute top-0 right-0 left-0 h-[60%] [mask-image:linear-gradient(to_bottom,#000_62%,transparent_100%)] lg:bottom-0 lg:left-[34%] lg:h-auto lg:[mask-image:linear-gradient(to_right,transparent_0%,#000_40%)]"
@@ -50,12 +49,15 @@ export function Hero() {
               placeholder="blur"
               blurDataURL={images.hero.blurDataURL}
               sizes="(min-width: 1024px) 62vw, 100vw"
-              className="object-cover object-[50%_14%] grayscale contrast-110 lg:object-[50%_30%]"
+              className="object-cover object-[50%_14%] lg:object-[50%_30%]"
             />
           </motion.div>
 
-          <div className="absolute inset-0 bg-brand-blue-deep/64" />
-          <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/35 to-bg/5 lg:via-bg/20 lg:to-transparent" />
+          {/* Sin tinte: solo el fundido a negro que hace legible el texto */}
+          <div className="absolute inset-0 bg-gradient-to-t from-bg from-30% via-bg/60 to-transparent lg:from-0% lg:via-bg/25" />
+          <div className="absolute inset-0 hidden bg-gradient-to-r from-bg via-bg/10 to-transparent lg:block" />
+          {/* Franja superior: da contraste al logotipo y a la localización */}
+          <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-bg/85 via-bg/35 to-transparent" />
         </motion.div>
 
         <div className="blueprint absolute inset-0 opacity-25" />
@@ -159,25 +161,6 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Indicador de scroll */}
-      <motion.a
-        href="#enlaces"
-        data-anim
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="container-brand relative z-10 flex items-center gap-3 pb-6 text-eyebrow font-bold text-fg-dim uppercase transition-colors duration-300 hover:text-brand-orange"
-      >
-        <motion.span
-          animate={reduce ? undefined : { y: [0, 6, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="grid size-9 place-items-center rounded-full border border-white/20"
-          aria-hidden="true"
-        >
-          <ArrowDown className="size-4" strokeWidth={1.75} />
-        </motion.span>
-        Todos mis enlaces
-      </motion.a>
     </section>
   );
 }

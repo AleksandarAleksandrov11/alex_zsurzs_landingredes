@@ -51,6 +51,7 @@
 
   /* Geometría de marca: la inclinación de la Z (≈50° sobre la horizontal) */
   --brand-skew: -40deg;
+  --brand-angle: 130deg;
 
   /* Movimiento */
   --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
@@ -246,6 +247,24 @@
     );
   }
 
+  /* Textura de marca: diagonales a la inclinación de la Z sobre rejilla técnica */
+  .brand-texture {
+    background-color: var(--color-bg);
+    background-image:
+      repeating-linear-gradient(
+        var(--brand-angle),
+        transparent 0 34px,
+        color-mix(in srgb, var(--color-brand-blue) 14%, transparent) 34px 36px,
+        transparent 36px 78px,
+        color-mix(in srgb, var(--color-brand-blue) 8%, transparent) 78px 79px
+      ),
+      radial-gradient(
+        90% 70% at 50% 120%,
+        color-mix(in srgb, var(--color-brand-blue) 26%, transparent) 0%,
+        transparent 70%
+      );
+  }
+
   /* Rejilla técnica de fondo, muy tenue */
   .blueprint {
     background-image:
@@ -395,6 +414,56 @@
     to {
       transform: translate3d(-50%, 0, 0);
     }
+  }
+
+  /* Tipografía de las páginas legales */
+  .legal-prose {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    color: var(--color-fg-muted);
+    line-height: 1.75;
+  }
+  .legal-prose h2 {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    color: var(--color-fg);
+  }
+  .legal-prose h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--color-fg);
+  }
+  .legal-prose ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-left: 0;
+  }
+  .legal-prose li {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .legal-prose li::before {
+    content: "";
+    flex: none;
+    width: 6px;
+    height: 6px;
+    margin-top: 0.7rem;
+    rotate: 45deg;
+    background: var(--color-brand-orange);
+  }
+  .legal-prose a {
+    color: var(--color-brand-orange);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .legal-prose a:hover {
+    color: var(--color-brand-orange-hover);
+  }
+  .legal-prose strong {
+    color: var(--color-fg);
   }
 
   /* Enlace de salto para lectores de pantalla / teclado */

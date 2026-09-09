@@ -1,17 +1,10 @@
-import Image from "next/image";
-import { Mail, MessageCircle } from "lucide-react";
+import { Mail } from "lucide-react";
+import { BrandIcon } from "@/components/ui/BrandIcon";
 import { BrandMark } from "@/components/ui/BrandMark";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import {
-  EMAIL,
-  WHATSAPP_PENDING,
-  WHATSAPP_URL,
-  identity,
-  images,
-  primaryCta,
-} from "@/content/site";
+import { EMAIL, WHATSAPP_URL, identity, primaryCta } from "@/content/site";
 
 export function ContactCTA() {
   return (
@@ -19,20 +12,11 @@ export function ContactCTA() {
       id="contacto"
       className="section-pad relative scroll-mt-20 overflow-hidden"
     >
-      {/* Retrato de cierre bajo capa de color corporativo (manual, 05) */}
+      {/* Fondo de textura: diagonales de marca sobre rejilla técnica */}
       <div className="absolute inset-0 -z-20" aria-hidden="true">
-        <Image
-          src={images.contact.src}
-          alt=""
-          fill
-          loading="lazy"
-          placeholder="blur"
-          blurDataURL={images.contact.blurDataURL}
-          sizes="100vw"
-          className="object-cover object-[72%_26%] grayscale contrast-105"
-        />
-        <div className="absolute inset-0 bg-brand-blue-deep/70" />
-        <div className="absolute inset-0 bg-gradient-to-b from-bg via-bg/55 to-bg" />
+        <div className="brand-texture absolute inset-0" />
+        <div className="blueprint absolute inset-0 opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-bg via-transparent to-bg" />
       </div>
 
       {/* Isotipo como marca de agua, en azul corporativo */}
@@ -45,7 +29,7 @@ export function ContactCTA() {
       <div className="container-brand flex flex-col items-center gap-10 text-center">
         <SectionHeading
           align="center"
-          index="07."
+          index="03."
           eyebrow="Contacto"
           titleLines={["¿Hablamos", "de tu instalación?"]}
           description={`Dudas técnicas, formaciones a medida o colaboraciones. Escríbeme y te contesto. ${identity.location}.`}
@@ -56,14 +40,10 @@ export function ContactCTA() {
             <MagneticButton
               href={WHATSAPP_URL}
               className="flex-1"
-              ariaLabel={
-                WHATSAPP_PENDING
-                  ? "Escribir a Alex Zsurzs desde el formulario de contacto"
-                  : "Escribir a Alex Zsurzs por WhatsApp"
-              }
+              ariaLabel="Escribir a Alex Zsurzs por WhatsApp"
             >
-              <MessageCircle className="size-5" strokeWidth={1.75} aria-hidden="true" />
-              {WHATSAPP_PENDING ? "Escríbeme" : "WhatsApp"}
+              <BrandIcon name="whatsapp" className="size-5" />
+              Escríbeme
             </MagneticButton>
 
             <MagneticButton

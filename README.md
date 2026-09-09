@@ -59,6 +59,26 @@ eso no ocurre (JS desactivado, un chunk que falla, una red que corta), el CSS
 revela el contenido por su cuenta y retira el preloader. Está comprobado con
 el navegador sin JavaScript y bloqueando los chunks de `_next/static`.
 
+## Estructura de la página
+
+Hero → bloque de enlaces → cinta de especialidades → Sobre mí → Mis
+especialidades → Contacto → Footer.
+
+Fuera de la landing quedan las páginas legales, con su propio marco visual:
+`/aviso-legal`, `/privacidad` y `/cookies`.
+
+## Aviso de cookies
+
+La landing **no instala cookies de analítica, publicidad ni seguimiento**. Lo
+único que guarda es almacenamiento del navegador: la elección del aviso
+(`zs-cookies`, permanente) y si ya se ha visto la animación de entrada
+(`zs-preloader`, solo durante la sesión y solo si se acepta). Rechazar tiene
+efecto real: el preloader deja de recordarse.
+
+Si algún día se añade analítica, hay que ampliar el banner con gestión de
+consentimiento por categorías y actualizar `/cookies`. La lógica de
+consentimiento vive en `src/lib/consent.ts`.
+
 ## Dónde se edita el contenido
 
 **Todo** el texto, los enlaces, los precios y las cifras están en un único archivo:
@@ -78,42 +98,27 @@ a todos los enlaces externos desde la constante `UTM` de ese mismo archivo; poni
 
 | Dato | Dónde | Estado |
 |---|---|---|
-| Número de WhatsApp | `WHATSAPP_URL` en `site.ts` | Provisional: apunta al formulario de contacto de la web. Sustituir por `https://wa.me/34XXXXXXXXX` y poner `WHATSAPP_PENDING = false`. |
-| Correo público | `EMAIL` en `site.ts` | Provisional `info@alexzsurzs.com`. Confirmar. |
-| Precios de los 4 productos | `products` en `site.ts` | Marcados con `// verificar antes de publicar`. |
-| Cifra de comunidad (50K+) | `stats` en `site.ts` | Verificar antes de publicar. |
-| URLs de aviso legal y privacidad | `legal.links` en `site.ts` | Rutas estándar de Shopify. Confirmar que existen. |
-| Dominio final | `LANDING_URL` en `site.ts` | Ahora apunta a `alexzsurzs.com`. Cambiar si la landing va a un subdominio. |
+| Cifra de comunidad (50K+) | `stats` en `src/content/site.ts` | Verificar antes de publicar. |
+| Dominio final | Variable `NEXT_PUBLIC_SITE_URL` en Vercel | Sin definir se usa el dominio que asigne Vercel. |
+| Revisión jurídica de los textos legales | `src/app/aviso-legal`, `privacidad`, `cookies` | Redactados con los datos del titular, pero conviene que los valide un profesional. |
+
+Los datos de contacto ya son los definitivos: WhatsApp **+34 668 53 27 86**,
+correo **info@zsolutions.es** y, para asuntos legales, **gestion@zsolutions.es**.
 
 ## Fotografías
 
-Las fotos de Alex ya están integradas y procesadas (recortadas, optimizadas y con
-miniatura de carga en base64). Se sirven en blanco y negro con capa de color
-corporativo, como manda el manual.
+Las tres fotos de Alex están integradas y procesadas (recortadas, optimizadas y
+con miniatura de carga en base64). Se sirven **a color, sin filtro**: el manual
+permite el blanco y negro y la capa corporativa, no los impone.
 
 | Archivo | Tamaño | Dónde se usa |
 |---|---|---|
 | `hero.jpg` | 1068 × 1600 | Hero. En escritorio ocupa la banda derecha con fundido; en móvil, la franja superior. |
 | `about-portrait.jpg` | 900 × 1125 | Retrato principal de «Sobre mí». |
 | `about-premio.jpg` | 1200 × 1200 | Imagen secundaria superpuesta en «Sobre mí». |
-| `work-vertical.jpg` | 892 × 1587 | Fondo del bloque de formación presencial. |
-| `contacto.jpg` | 900 × 600 | Fondo del bloque de contacto final. |
-
-**Siguen pendientes las 4 fotos de producto**, que ahora son marcadores de posición
-con la marca. Hay que sustituirlas manteniendo el nombre y la proporción 1:1:
-
-| Archivo | Tamaño mínimo | Qué debe verse |
-|---|---|---|
-| `producto-bolsas-40.jpg` | 1000 × 1000 | Bolsas anti-polvo de 40 mm. |
-| `producto-bolsas-65.jpg` | 1000 × 1000 | Bolsas anti-polvo de 65 mm. |
-| `producto-mangueras.jpg` | 1000 × 1000 | Mangueras de vacío HIGH-FLOW. |
-| `producto-ccs-ultra.jpg` | 1000 × 1000 | Ascendedor/descendedor CCS-Ultra. |
 
 Al sustituir una foto hay que regenerar su `blurDataURL` en `src/content/site.ts`
 (miniatura de 10 px en base64) o quitar el `placeholder="blur"` de ese `<Image>`.
-
-Vídeo de hero: no se usa. Si más adelante se añade, debe servirse solo en escritorio,
-con `muted`, `playsInline`, `preload="none"` y póster, dejando la imagen estática en móvil.
 
 ## Iconos, manifiesto y metadatos
 
@@ -160,7 +165,9 @@ con el mismo lenguaje sólido y geométrico. Si existe un original, se sustituye
   decorativo del marquee. Nunca en el logotipo.
 - El logotipo aparece únicamente en blanco sobre fondo oscuro, sin contorno, sin marco y
   con área de seguridad libre.
-- Sobre fotografía se aplica capa de color corporativo al 68 % (el manual permite 60–80 %).
+- Las fotografías van a color, sin tinte: el manual permite el blanco y negro y
+  la capa de color corporativo, pero no los exige. La legibilidad del texto se
+  resuelve con fundidos a negro.
 - Righteous solo en titulares y números; el cuerpo de texto va en Arial/Helvetica.
 
 ## Accesibilidad y movimiento
